@@ -80,24 +80,27 @@ public class GamePiece {
         this.type = type;
     }
 
-    public void move() {
-        Random x = new Random();
-        Random y = new Random();
-        if (this.isFrozen == false) {
-            this.positionX += x.nextInt(this.maxX);
-            this.positionY += y.nextInt(this.maxY);
-        } else {
+    public void randomMove() {
+        if (this.isFrozen) {
             System.out.println("You can't move, you're frozen");
+        } else {
+            Random random = new Random();
+            int randomX = random.nextInt(this.maxX / 2);
+            int randomY = random.nextInt(this.maxY / 2);
+            move(randomX, randomY);
         }
-
     }
 
     public void move(int x, int y) {
-        if (this.isFrozen == false) {
+        if (this.isFrozen) {
+            System.out.println("You can't move, you're frozen");
+        } else if (this.positionX + x > this.maxX) {
+            throw new AssertionError("You tried to move " + x + " spaces from " + this.positionX + " and fell off the X axis.");
+        } else if (this.positionY + y > this.maxY) {
+            throw new AssertionError("You tried to move " + y + " spaces from " + this.positionY + " and fell off the Y axis.");
+        } else {
             this.positionX += x;
             this.positionY += y;
-        } else {
-            System.out.println("You can't move, you're frozen");
         }
     }
 

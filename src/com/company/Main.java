@@ -8,6 +8,9 @@ public class Main {
 
         System.out.println("X: " + rooke.getPositionX());
         System.out.println("Y: " + rooke.getPositionY());
+        System.out.println("Max X: " + rooke.getMaxX());
+        System.out.println("Max Y: " + rooke.getMaxY());
+
 
         rooke.freeze();
         if (rooke.isFrozen()) {
@@ -30,14 +33,17 @@ public class Main {
             System.out.println("Error: The piece is still frozen.");
         }
 
-        rooke.move(5,7);
+        rooke.move(25,75);
         if (rooke.getPositionX() == 5 && rooke.getPositionY() == 7) {
             System.out.println("The piece was not frozen, so it moved to " + rooke.getPositionX() + "," + rooke.getPositionY());
         } else {
             System.out.println("Error: The piece should not be frozen, but it did not move.");
         }
 
-        rooke.move();
+        rooke.randomMove();
+        System.out.println("The piece randomly moved to " + rooke.getPositionX() + "," + rooke.getPositionY());
+
+        rooke.randomMove();
         System.out.println("The piece randomly moved to " + rooke.getPositionX() + "," + rooke.getPositionY());
 
     }
